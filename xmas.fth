@@ -20,7 +20,7 @@ code !portc
    ' drop rjmp,
 end-code
 
-code sk6812-bit
+code sk6812
    0 # 8 sbi,
    r26 rol,
    nop,
@@ -38,26 +38,31 @@ code sk6812-bit
 end-code
 
 : sk6812-byte ( c -- )
-  sk6812-bit sk6812-bit sk6812-bit sk6812-bit 
-  sk6812-bit sk6812-bit sk6812-bit sk6812-bit drop ;
-\ : bang   00 sk6812-byte 80 sk6812-byte 00 sk6812-byte
-\          80 sk6812-byte 00 sk6812-byte 00 sk6812-byte
-\          00 sk6812-byte 00 sk6812-byte 80 sk6812-byte
-\          00 sk6812-byte 80 sk6812-byte 00 sk6812-byte
-\          80 sk6812-byte 00 sk6812-byte 00 sk6812-byte
-\          00 sk6812-byte 00 sk6812-byte 80 sk6812-byte ;
-: bang   [ decimal ] 50 [ hex ] begin dup sk6812-byte dup sk6812-byte dup sk6812-byte 1- dup 0= until drop ;
+  sk6812 sk6812 sk6812 sk6812 sk6812 sk6812 sk6812 sk6812 drop ;
 
-: more ( x -- x' ) dup 40 = if drop 1 then ;
-: cycle ( x -- x' ) dup dup + swap !portc more ;
+: 12rshift   2/ 2/ 2/ 2/ 2/ 2/ 2/ 2/ 2/ 2/ 2/ 2/ ;
+: 4lshift   2* 2* 2* 2* ;
+: d?   [ decimal ] 10 [ hex ] - 0< ;
+: h.   dup 12rshift F and dup d? if [char] 0 else [char] 7 then + emit ;
+: space   20 emit ;
+: . ( u -- ) h. 4lshift h. 4lshift h. 4lshift h. drop space ;
+: cr   [ decimal ] 13 emit 10 emit [ hex ] ;
 
-variable n
-variable x
+variable offset
+\ : lights   offset @ + sk6812-byte dup sk6812-byte 0 sk6812-byte ;
+\ : bang   [ decimal ] 60 [ hex ] begin dup lights 1- dup 0= until drop ;
+\ : bump   1 offset +!  offset c@ . ;
 
-: setup  setup-uart set-output  200 n !  100 x ! ;
-: delay   begin 1- dup 0= until drop ;
-: led-on   01 !portb 300 delay ;
-: led-off   0 !portb 300 delay ;
+: lights   dup sk6812-byte 22 + dup sk6812-byte 11 + dup sk6812-byte ;
+: bang   [ decimal ] 60 [ hex ] begin swap lights swap 1- dup 0= until drop ;
+: bump   dup . dup . dup . dup . ; \ dup . dup . dup . dup . ;
+
+: setup  setup-uart set-output ;
+: led-on   01 !portb ;
+: led-off   0 !portb ;
 \ Jump here from COLD.
 : warm   then setup 
-         begin led-off key drop bang led-on key drop again ;
+         0 offset !
+         cr
+         1234 .
+         0 begin led-off ( key drop ) bang led-on ( key drop ) bump again ;
