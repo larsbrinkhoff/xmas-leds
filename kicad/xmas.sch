@@ -1,0 +1,444 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Xmas LED strip"
+Date "2020-12-17"
+Rev "V01"
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:LED D1
+U 1 1 5FDBD44F
+P 6050 2250
+F 0 "D1" H 6043 1995 50  0000 C CNN
+F 1 " " H 6043 2086 50  0000 C CNN
+F 2 "LED_THT:LED_D5.0mm" H 6050 2250 50  0001 C CNN
+F 3 "~" H 6050 2250 50  0001 C CNN
+	1    6050 2250
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5FDBDAB6
+P 6700 2250
+F 0 "R1" V 6493 2250 50  0000 C CNN
+F 1 "1k" V 6584 2250 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 6630 2250 50  0001 C CNN
+F 3 "~" H 6700 2250 50  0001 C CNN
+	1    6700 2250
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Crystal Y1
+U 1 1 5FDBE171
+P 6050 2800
+F 0 "Y1" V 6004 2931 50  0000 L CNN
+F 1 "Crystal" V 6095 2931 50  0000 L CNN
+F 2 "Crystal:Crystal_HC49-U_Vertical" H 6050 2800 50  0001 C CNN
+F 3 "~" H 6050 2800 50  0001 C CNN
+	1    6050 2800
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 5FDBFB2B
+P 6650 2650
+F 0 "C1" V 6398 2650 50  0000 C CNN
+F 1 "22pF" V 6489 2650 50  0000 C CNN
+F 2 "Capacitor_THT:C_Disc_D7.5mm_W2.5mm_P5.00mm" H 6688 2500 50  0001 C CNN
+F 3 "~" H 6650 2650 50  0001 C CNN
+	1    6650 2650
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 5FDC07C3
+P 6650 2950
+F 0 "C2" V 6398 2950 50  0000 C CNN
+F 1 "22pF" V 6489 2950 50  0000 C CNN
+F 2 "Capacitor_THT:C_Disc_D7.5mm_W2.5mm_P5.00mm" H 6688 2800 50  0001 C CNN
+F 3 "~" H 6650 2950 50  0001 C CNN
+	1    6650 2950
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR06
+U 1 1 5FDC0A4F
+P 4800 5450
+F 0 "#PWR06" H 4800 5200 50  0001 C CNN
+F 1 "GND" H 4805 5277 50  0000 C CNN
+F 2 "" H 4800 5450 50  0001 C CNN
+F 3 "" H 4800 5450 50  0001 C CNN
+	1    4800 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR07
+U 1 1 5FDC0D17
+P 7150 4550
+F 0 "#PWR07" H 7150 4300 50  0001 C CNN
+F 1 "GND" H 7155 4377 50  0000 C CNN
+F 2 "" H 7150 4550 50  0001 C CNN
+F 3 "" H 7150 4550 50  0001 C CNN
+	1    7150 4550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5400 2250 5900 2250
+Wire Wire Line
+	6200 2250 6550 2250
+Wire Wire Line
+	5400 2950 6050 2950
+Wire Wire Line
+	6050 2650 6500 2650
+Wire Wire Line
+	6050 2950 6500 2950
+Connection ~ 6050 2950
+Wire Wire Line
+	7150 2250 6850 2250
+Wire Wire Line
+	6800 2650 7150 2650
+Connection ~ 7150 2650
+Wire Wire Line
+	7150 2650 7150 2250
+Wire Wire Line
+	6800 2950 7150 2950
+Connection ~ 7150 2950
+Wire Wire Line
+	7150 2950 7150 2650
+Wire Wire Line
+	4800 5000 4800 5450
+$Comp
+L power:VCC #PWR05
+U 1 1 5FDC2B6D
+P 4800 1100
+F 0 "#PWR05" H 4800 950 50  0001 C CNN
+F 1 "VCC" H 4817 1273 50  0000 C CNN
+F 2 "" H 4800 1100 50  0001 C CNN
+F 3 "" H 4800 1100 50  0001 C CNN
+	1    4800 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 1100 4800 1400
+Wire Wire Line
+	4900 1950 4900 1400
+Wire Wire Line
+	4900 1400 4800 1400
+Connection ~ 4800 1400
+Wire Wire Line
+	4800 1400 4800 1950
+$Comp
+L power:VCC #PWR08
+U 1 1 5FDCB737
+P 7450 2000
+F 0 "#PWR08" H 7450 1850 50  0001 C CNN
+F 1 "VCC" H 7467 2173 50  0000 C CNN
+F 2 "" H 7450 2000 50  0001 C CNN
+F 3 "" H 7450 2000 50  0001 C CNN
+	1    7450 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7450 2000 7450 3250
+Wire Wire Line
+	7450 3250 7550 3250
+Wire Wire Line
+	5400 3150 7550 3150
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J2
+U 1 1 5FDCD989
+P 2300 3650
+F 0 "J2" H 2350 3967 50  0000 C CNN
+F 1 "ISP" H 2350 3876 50  0000 C CNN
+F 2 "Connector_IDC:IDC-Header_2x03_P2.54mm_Vertical" H 2300 3650 50  0001 C CNN
+F 3 "~" H 2300 3650 50  0001 C CNN
+	1    2300 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR03
+U 1 1 5FDCDF61
+P 2850 2850
+F 0 "#PWR03" H 2850 2700 50  0001 C CNN
+F 1 "VCC" H 2867 3023 50  0000 C CNN
+F 2 "" H 2850 2850 50  0001 C CNN
+F 3 "" H 2850 2850 50  0001 C CNN
+	1    2850 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 5FDCE291
+P 2900 4400
+F 0 "#PWR04" H 2900 4150 50  0001 C CNN
+F 1 "GND" H 2905 4227 50  0000 C CNN
+F 2 "" H 2900 4400 50  0001 C CNN
+F 3 "" H 2900 4400 50  0001 C CNN
+	1    2900 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2900 4400 2900 3750
+Wire Wire Line
+	2900 3750 2600 3750
+Wire Wire Line
+	2600 3550 2850 3550
+Wire Wire Line
+	2850 3550 2850 2850
+Wire Wire Line
+	2600 3650 2650 3650
+Wire Wire Line
+	5400 2750 5550 2750
+Wire Wire Line
+	5550 2750 5550 5900
+Wire Wire Line
+	5550 5900 2050 5900
+Wire Wire Line
+	5400 2650 5600 2650
+Wire Wire Line
+	5600 2650 5600 5950
+Wire Wire Line
+	5600 5950 2000 5950
+$Comp
+L Connector_Generic:Conn_01x03 J3
+U 1 1 5FDD7FDF
+P 7750 3150
+F 0 "J3" H 7830 3192 50  0000 L CNN
+F 1 "LED Strip 1" H 7830 3101 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 7750 3150 50  0001 C CNN
+F 3 "~" H 7750 3150 50  0001 C CNN
+	1    7750 3150
+	1    0    0    -1  
+$EndComp
+NoConn ~ 5400 4650
+NoConn ~ 5400 4550
+NoConn ~ 5400 4450
+NoConn ~ 5400 4350
+NoConn ~ 5400 4250
+NoConn ~ 5400 4150
+NoConn ~ 5400 3350
+NoConn ~ 5400 3450
+NoConn ~ 5400 3550
+NoConn ~ 5400 3650
+$Comp
+L Connector:USB_B_Micro J1
+U 1 1 5FDEA198
+P 1450 2250
+F 0 "J1" H 1507 2717 50  0000 C CNN
+F 1 "USB" H 1507 2626 50  0000 C CNN
+F 2 "Connector_USB:USB_Micro-B_Wuerth_614105150721_Vertical" H 1600 2200 50  0001 C CNN
+F 3 "~" H 1600 2200 50  0001 C CNN
+	1    1450 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR02
+U 1 1 5FDEBCD5
+P 1950 1850
+F 0 "#PWR02" H 1950 1700 50  0001 C CNN
+F 1 "VCC" H 1967 2023 50  0000 C CNN
+F 2 "" H 1950 1850 50  0001 C CNN
+F 3 "" H 1950 1850 50  0001 C CNN
+	1    1950 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR01
+U 1 1 5FDEDEE4
+P 1450 2950
+F 0 "#PWR01" H 1450 2700 50  0001 C CNN
+F 1 "GND" H 1455 2777 50  0000 C CNN
+F 2 "" H 1450 2950 50  0001 C CNN
+F 3 "" H 1450 2950 50  0001 C CNN
+	1    1450 2950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1450 2950 1450 2650
+Wire Wire Line
+	1950 1850 1950 2050
+Wire Wire Line
+	1950 2050 1750 2050
+NoConn ~ 1750 2250
+NoConn ~ 1750 2350
+NoConn ~ 1750 2450
+NoConn ~ 1350 2650
+NoConn ~ 4200 2250
+NoConn ~ 5400 2350
+$Comp
+L MCU_Microchip_ATmega:ATmega328-PU U1
+U 1 1 5FE04566
+P 4800 3450
+F 0 "U1" H 4156 3496 50  0000 R CNN
+F 1 "ATmega328" H 4156 3405 50  0000 R CNN
+F 2 "Package_DIP:DIP-28_W7.62mm_Socket" H 4800 3450 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20with%20picoPower%20Technology%20Data%20Sheet%2040001984A.pdf" H 4800 3450 50  0001 C CNN
+	1    4800 3450
+	1    0    0    -1  
+$EndComp
+NoConn ~ 5400 2450
+Wire Wire Line
+	6050 2650 5850 2650
+Wire Wire Line
+	5850 2650 5850 2850
+Wire Wire Line
+	5400 2850 5850 2850
+Connection ~ 6050 2650
+Wire Wire Line
+	5400 2550 5650 2550
+Wire Wire Line
+	5650 2550 5650 5850
+Wire Wire Line
+	5650 5850 2650 5850
+Wire Wire Line
+	2650 5850 2650 3650
+Wire Wire Line
+	5500 3750 5400 3750
+Wire Wire Line
+	5500 3750 5500 5800
+Wire Wire Line
+	5500 5800 3700 5800
+Wire Wire Line
+	2100 5800 2100 3750
+Wire Wire Line
+	2050 3650 2050 5900
+Wire Wire Line
+	2050 3650 2100 3650
+Wire Wire Line
+	2000 3550 2000 5950
+Wire Wire Line
+	2000 3550 2100 3550
+$Comp
+L Device:C C3
+U 1 1 5FE1D8EA
+P 4450 1400
+F 0 "C3" V 4198 1400 50  0000 C CNN
+F 1 "0.1uF" V 4289 1400 50  0000 C CNN
+F 2 "Capacitor_THT:C_Disc_D16.0mm_W5.0mm_P7.50mm" H 4488 1250 50  0001 C CNN
+F 3 "~" H 4450 1400 50  0001 C CNN
+	1    4450 1400
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR09
+U 1 1 5FE1E72D
+P 4050 1650
+F 0 "#PWR09" H 4050 1400 50  0001 C CNN
+F 1 "GND" H 4055 1477 50  0000 C CNN
+F 2 "" H 4050 1650 50  0001 C CNN
+F 3 "" H 4050 1650 50  0001 C CNN
+	1    4050 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4050 1650 4050 1400
+Wire Wire Line
+	4050 1400 4300 1400
+Wire Wire Line
+	4600 1400 4800 1400
+$Comp
+L Device:R R2
+U 1 1 5FE2AC3E
+P 3700 5350
+F 0 "R2" H 3770 5396 50  0000 L CNN
+F 1 "10k" H 3770 5305 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 3630 5350 50  0001 C CNN
+F 3 "~" H 3700 5350 50  0001 C CNN
+	1    3700 5350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 5500 3700 5800
+Connection ~ 3700 5800
+Wire Wire Line
+	3700 5800 2100 5800
+$Comp
+L power:VCC #PWR010
+U 1 1 5FE2DFC6
+P 3700 4850
+F 0 "#PWR010" H 3700 4700 50  0001 C CNN
+F 1 "VCC" H 3717 5023 50  0000 C CNN
+F 2 "" H 3700 4850 50  0001 C CNN
+F 3 "" H 3700 4850 50  0001 C CNN
+	1    3700 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 4850 3700 5200
+$Comp
+L Connector_Generic:Conn_01x03 J4
+U 1 1 5FE3B31C
+P 7750 3550
+F 0 "J4" H 7830 3592 50  0000 L CNN
+F 1 "LED Strip 2" H 7830 3501 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 7750 3550 50  0001 C CNN
+F 3 "~" H 7750 3550 50  0001 C CNN
+	1    7750 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6150 3550 6150 3250
+Wire Wire Line
+	6150 3250 5400 3250
+Wire Wire Line
+	7550 3650 7450 3650
+Connection ~ 7450 3250
+$Comp
+L Connector_Generic:Conn_01x05 J5
+U 1 1 5FE461E2
+P 7750 4050
+F 0 "J5" H 7830 4092 50  0000 L CNN
+F 1 "RS232" H 7830 4001 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 7750 4050 50  0001 C CNN
+F 3 "~" H 7750 4050 50  0001 C CNN
+	1    7750 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7550 3850 7450 3850
+Wire Wire Line
+	7450 3850 7450 3650
+Connection ~ 7450 3650
+Wire Wire Line
+	7550 3950 7150 3950
+NoConn ~ 7550 4250
+Wire Wire Line
+	5400 3950 6850 3950
+Wire Wire Line
+	5400 4050 6800 4050
+Wire Wire Line
+	6800 4050 6800 4150
+Wire Wire Line
+	7550 3050 7150 3050
+Wire Wire Line
+	7150 2950 7150 3050
+Connection ~ 7150 3050
+Wire Wire Line
+	7150 3050 7150 3450
+Wire Wire Line
+	7550 3450 7150 3450
+Connection ~ 7150 3450
+Wire Wire Line
+	7150 3450 7150 3950
+Connection ~ 7150 3950
+Wire Wire Line
+	6800 4150 7550 4150
+Wire Wire Line
+	7150 3950 7150 4550
+Wire Wire Line
+	6850 3950 6850 4050
+Wire Wire Line
+	7550 4050 6850 4050
+Wire Wire Line
+	7450 3250 7450 3650
+Wire Wire Line
+	7550 3550 6150 3550
+$EndSCHEMATC
