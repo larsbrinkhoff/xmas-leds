@@ -1,8 +1,14 @@
 include target/avr/uart.fth
 
+decimal
+
+60 constant length
+create buf 3 60 * ram-allot
+
 hex
 
-code set-output
+\ Set port B and C to output.
+code setup-output
    FF # r16 ldi,
    04 r16 out, \ DDRB
    FF # r16 ldi,
@@ -10,17 +16,20 @@ code set-output
    ret,
 end-code
 
-code !portb
+\ Write to port B.
+code !portb ( c -- )
    05 r26 out,
    ' drop rjmp,
 end-code
 
-code !portc
+\ Write to port C.
+code !portc ( c -- )
    08 r26 out,
    ' drop rjmp,
 end-code
 
-code sk6812
+\ Send one bit.
+code sk6812 ( c -- c' )
    0 # 8 sbi,
    r26 rol,
    nop,
@@ -37,32 +46,48 @@ code sk6812
    ret,
 end-code
 
-: sk6812-byte ( c -- )
-  sk6812 sk6812 sk6812 sk6812 sk6812 sk6812 sk6812 sk6812 drop ;
+code 1>>
+   r27 lsr,
+   r26 ror,
+   ret,
+end-code
 
-: 12rshift   2/ 2/ 2/ 2/ 2/ 2/ 2/ 2/ 2/ 2/ 2/ 2/ ;
-: 4lshift   2* 2* 2* 2* ;
-: d?   [ decimal ] 10 [ hex ] - 0< ;
-: h.   dup 12rshift F and dup d? if [char] 0 else [char] 7 then + emit ;
-: space   20 emit ;
-: . ( u -- ) h. 4lshift h. 4lshift h. 4lshift h. drop space ;
-: cr   [ decimal ] 13 emit 10 emit [ hex ] ;
+variable seed
+: 7<<   2* 2* 2* 2* 2* 2* 2* ;
+: 8<<   7<< 2* ;
+: 9>>   1>> 1>> 1>> 1>> 1>> 1>> 1>> 1>> 1>> ;
+: random ( -- u ) seed @  dup 7<< xor  dup 9>> xor  dup 8<< xor  dup seed ! ;
 
-variable offset
-\ : lights   offset @ + sk6812-byte dup sk6812-byte 0 sk6812-byte ;
-\ : bang   [ decimal ] 60 [ hex ] begin dup lights 1- dup 0= until drop ;
-\ : bump   1 offset +!  offset c@ . ;
+: setup  setup-uart setup-output  5555 seed ! ;
 
-: lights   dup sk6812-byte 22 + dup sk6812-byte 11 + dup sk6812-byte ;
-: bang   [ decimal ] 60 [ hex ] begin swap lights swap 1- dup 0= until drop ;
-: bump   dup . dup . dup . dup . ; \ dup . dup . dup . dup . ;
-
-: setup  setup-uart set-output ;
+\ Turn debug LED on or off.
 : led-on   01 !portb ;
 : led-off   0 !portb ;
+
+\ Send one byte.
+: byte ( c -- )
+  sk6812 sk6812 sk6812 sk6812 sk6812 sk6812 sk6812 sk6812 drop ;
+
+: c@+ ( a -- a' c ) dup 1+ swap c@ ;
+: c!+ ( c a -- a' ) dup >r c!  r> 1+ ;
+
+: light ( a -- a' ) c@+ byte c@+ byte c@+ byte ;
+: lights   buf length >r begin light r> 1- dup >r 0= until r> drop drop ;
+
+: delay  0 emit 0 emit 0 emit 0 emit ;
+: iteration    ( led-off ) lights ( led-on ) delay ;
+
+variable counter
+
+\ G R B
+: x   random 1F and ;
+: zero ( a -- a' ) x over c! 1+  x over c! 1+  x over c! 1+ ;
+: buffer   buf length >r begin zero r> 1- dup >r 0= until r> drop drop ;
+
+: new?   counter @ 003F and 0= ;
+: ?new   new? if led-on buffer then ;
+
 \ Jump here from COLD.
-: warm   then setup 
-         0 offset !
-         cr
-         1234 .
-         0 begin led-off ( key drop ) bang led-on ( key drop ) bump again ;
+: warm   then setup buffer
+         0 counter !
+         begin iteration 1 counter +! ?new again ;
